@@ -3,7 +3,7 @@ plugins {
     id "idea"
 }
 
-group "ch.marcoforster"
+group "ch.marcoforster.libraries"
 version "0.0.0"
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -13,9 +13,26 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    lombokVersion = "1.18.18"
+    retrofitVersion = "2.9.0"
+    junitVersion = "5.7.1"
+}
+
 dependencies {
-    testImplementation "org.junit.jupiter:junit-jupiter-api:5.6.0"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testRuntime "org.junit.vintage:junit-vintage-engine:${junitVersion}"
 }
 
 test {
