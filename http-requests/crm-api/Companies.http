@@ -1,10 +1,152 @@
-# Companies
-# https://developers.hubspot.com/docs/api/crm/companies
+#### Companies
+#### https://developers.hubspot.com/docs/api/crm/companies
+
+### Basic ###
 
 ### List
-GET {{baseUrl}}/crm/v3/objects/companies?after=2875309716&hapikey={{apiKey}}
+GET {{baseUrl}}/crm/v3/objects/companies?hapikey={{apiKey}}
 Content-Type: application/json
 
-### Read
-GET {{baseUrl}}/crm/v3/objects/companies/2875309706?hapikey={{apiKey}}
+### Create
+POST {{baseUrl}}/crm/v3/objects/companies?hapikey={{apiKey}}
 Content-Type: application/json
+
+{
+  "city": "Cambridge",
+  "domain": "biglytics.net",
+  "industry": "Technology",
+  "name": "Biglytics",
+  "phone": "(877) 929-0687",
+  "state": "Massachusetts"
+}
+
+### Read
+GET {{baseUrl}}/crm/v3/objects/companies/{companyId}?hapikey={{apiKey}}
+Content-Type: application/json
+
+### Update
+PATCH {{baseUrl}}/crm/v3/objects/companies/{companyId}?hapikey={{apiKey}}
+Content-Type: application/json
+
+{
+  "city": "Cambridge",
+  "domain": "biglytics.net",
+  "industry": "Technology",
+  "name": "Biglytics",
+  "phone": "(877) 929-0687",
+  "state": "Massachusetts"
+}
+
+### Archive
+DELETE {{baseUrl}}/crm/v3/objects/companies/{companyId}?hapikey={{apiKey}}
+
+### Search ###
+
+### Filter, Sort, and Search CRM Objects
+POST {{baseUrl}}/crm/v3/objects/companies/search?hapikey={{apiKey}}
+Content-Type: application/json
+
+{
+  "filterGroups": [
+    {
+      "filters": [
+        {
+          "value": "string",
+          "propertyName": "string",
+          "operator": "EQ"
+        }
+      ]
+    }
+  ],
+  "sorts": [
+    "string"
+  ],
+  "query": "string",
+  "properties": [
+    "string"
+  ],
+  "limit": 0,
+  "after": 0
+}
+
+### Associations ###
+
+### List associations of a company by type
+GET {{baseUrl}}/crm/v3/objects/companies/{companyId}/associations/{toObjectType}?hapikey={{apiKey}}
+Content-Type: application/json
+
+### Associate a company with another object
+PUT {{baseUrl}}/crm/v3/objects/companies/{companyId}/associations/{toObjectType}/{toObjectId}/{associationType}?hapikey={{apiKey}}
+Content-Type: application/json
+
+### Remove an association between two companies
+DELETE {{baseUrl}}/crm/v3/objects/companies/{companyId}/associations/{toObjectType}/{toObjectId}/{associationType}?hapikey={{apiKey}}
+
+### Batch ###
+
+### Archive a batch of companies by ID
+POST {{baseUrl}}/crm/v3/objects/companies/batch/archive?hapikey={{apiKey}}
+Content-Type: application/json
+
+{
+  "inputs": [
+    {
+      "id": "string"
+    }
+  ]
+}
+
+### Create a batch of companies
+POST {{baseUrl}}/crm/v3/objects/companies/batch/create?hapikey={{apiKey}}
+Content-Type: application/json
+
+{
+  "inputs": [
+    {
+      "properties": {
+        "city": "Cambridge",
+        "domain": "biglytics.net",
+        "industry": "Technology",
+        "name": "Biglytics",
+        "phone": "(877) 929-0687",
+        "state": "Massachusetts"
+      }
+    }
+  ]
+}
+
+### Read a batch of companies by internal ID, or unique property values
+POST {{baseUrl}}/crm/v3/objects/companies/batch/read?hapikey={{apiKey}}
+Content-Type: application/json
+
+{
+  "properties": [
+    "string"
+  ],
+  "idProperty": "string",
+  "inputs": [
+    {
+      "id": "string"
+    }
+  ]
+}
+
+### Update a batch of companies
+POST {{baseUrl}}/crm/v3/objects/companies/batch/update?hapikey={{apiKey}}
+Content-Type: application/json
+
+{
+  "inputs": [
+    {
+      "id": "1",
+      "properties": {
+        "city": "Cambridge",
+        "domain": "biglytics.net",
+        "industry": "Technology",
+        "name": "Biglytics",
+        "phone": "(877) 929-0687",
+        "state": "Massachusetts"
+      }
+    }
+  ]
+}
