@@ -8,10 +8,9 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 import static config.EnvironmentVariables.API_KEY;
+import static config.EnvironmentVariables.COMPANY_ID;
 
 class CrmApiTest {
-
-    private static final String COMPANY_ID = "{companyId}";
 
     private static CrmApi crmApi;
 
@@ -29,8 +28,36 @@ class CrmApiTest {
     }
 
     @Test
+    void listCompaniesWithOptionalParameters() throws IOException {
+        val request = crmApi.listCompanies(
+                5,
+                COMPANY_ID,
+                new String[]{"name", "phone"},
+                null,
+                null
+        );
+        val response = request.execute();
+
+        val companies = response.body();
+    }
+
+    @Test
     void readCompany() throws IOException {
         val request = crmApi.readCompany(COMPANY_ID);
+        val response = request.execute();
+
+        val company = response.body();
+    }
+
+    @Test
+    void readCompanyWithOptionalParameters() throws IOException {
+        val request = crmApi.readCompany(
+                COMPANY_ID,
+                new String[]{"name", "phone"},
+                null,
+                null,
+                null
+        );
         val response = request.execute();
 
         val company = response.body();
