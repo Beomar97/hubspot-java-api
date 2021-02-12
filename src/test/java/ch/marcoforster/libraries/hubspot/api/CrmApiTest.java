@@ -11,7 +11,7 @@ import static config.EnvironmentVariables.API_KEY;
 
 class CrmApiTest {
 
-    private static final String COMPANY_ID = "2875309706";
+    private static final String COMPANY_ID = "{companyId}";
 
     private static CrmApi crmApi;
 
