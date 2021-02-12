@@ -1,0 +1,10 @@
+# Companies
+# https://developers.hubspot.com/docs/api/crm/companies
+
+### List
+GET {{baseUrl}}/crm/v3/objects/companies?after=2875309716&hapikey={{apiKey}}
+Content-Type: application/json
+
+### Read
+GET {{baseUrl}}/crm/v3/objects/companies/2875309706?hapikey={{apiKey}}
+Content-Type: application/json
