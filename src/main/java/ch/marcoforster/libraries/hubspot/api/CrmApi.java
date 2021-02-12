@@ -22,5 +22,16 @@ public interface CrmApi {
     );
 
     @GET("crm/v3/objects/companies/{companyId}")
-    Call<Company> readCompany(@Path("companyId") String companyId);
+    Call<Company> readCompany(
+            @Path("companyId") String companyId
+    );
+
+    @GET("crm/v3/objects/companies/{companyId}")
+    Call<Company> readCompany(
+            @Path("companyId") String companyId,
+            @Query("properties") String[] properties,
+            @Query("associations") String[] associations,
+            @Query("archived") Boolean archived,
+            @Query("idProperty") String idProperty
+    );
 }
