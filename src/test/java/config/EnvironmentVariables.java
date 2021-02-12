@@ -11,6 +11,7 @@ import java.util.Map;
 public class EnvironmentVariables {
 
     public static String API_KEY;
+    public static String COMPANY_ID;
 
     private static final String CONFIG_FILE = "EnvironmentVariables.yaml";
 
