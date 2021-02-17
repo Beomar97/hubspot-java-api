@@ -2,13 +2,18 @@ package ch.marcoforster.libraries.hubspot.api;
 
 import ch.marcoforster.libraries.hubspot.HubSpot;
 import ch.marcoforster.libraries.hubspot.models.crm.companies.requests.CompanyRequest;
+import ch.marcoforster.libraries.hubspot.models.crm.companies.requests.SearchCompaniesRequest;
+import ch.marcoforster.libraries.hubspot.models.search.Filter;
+import ch.marcoforster.libraries.hubspot.models.search.FilterGroup;
 import lombok.val;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import static ch.marcoforster.libraries.hubspot.models.search.Operator.HAS_PROPERTY;
 import static config.EnvironmentVariables.API_KEY;
 import static config.EnvironmentVariables.COMPANY_ID;
 
@@ -105,5 +110,31 @@ class CrmApiTest {
         val response = request.execute();
 
         val voidResponse = response.body();
+    }
+
+    @Test
+    void searchCompanies() throws IOException {
+        val request = crmApi.searchCompanies(
+                new SearchCompaniesRequest(
+                        new ArrayList<>() {{
+                            add(new FilterGroup(
+                                    new ArrayList<>() {{
+                                        add(new Filter("name", HAS_PROPERTY));
+                                    }}
+                            ));
+                        }},
+                        new ArrayList<>() {{
+                            add("name");
+                        }},
+                        new ArrayList<>() {{
+                            add("name");
+                        }},
+                        5,
+                        5
+                )
+        );
+        val response = request.execute();
+
+        val companiesBySearch = response.body();
     }
 }

@@ -145,4 +145,20 @@ public interface CrmApi {
     Call<Void> archiveCompany(
       @Path("companyId") String companyId
     );
+
+    /**
+     * <p>
+     *     Filter, Sort, and Search CRM Objects
+     * </p>
+     *
+     * @param companiesToSearch A custom request object {@link SearchCompaniesRequest},
+     *                          defines filter groups {@link List<FilterGroup>} with filters {@link List<Filter>},
+     *                          properties to sort by {@param sorts}, an optional query {@param query},
+     *                          and has paging capabilities with {@param limit} and {@param after}.
+     * @return                  A list of companies found by the search {@link CompaniesBySearch}.
+     */
+    @POST("crm/v3/objects/companies/search")
+    Call<CompaniesBySearch> searchCompanies(
+        @Body SearchCompaniesRequest companiesToSearch
+    );
 }
