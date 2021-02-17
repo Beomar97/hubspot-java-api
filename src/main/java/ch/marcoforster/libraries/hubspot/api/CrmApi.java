@@ -44,4 +44,9 @@ public interface CrmApi {
         @Path("companyId") String companyId,
         @Body CompanyRequest companyToUpdate
     );
+
+    @DELETE("crm/v3/objects/companies/{companyId}")
+    Call<Void> archiveCompany(
+      @Path("companyId") String companyId
+    );
 }

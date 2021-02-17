@@ -98,4 +98,12 @@ class CrmApiTest {
 
         val updatedCompany = response.body();
     }
+
+    @Test
+    void archiveCompany() throws IOException {
+        val request = crmApi.archiveCompany(COMPANY_ID);
+        val response = request.execute();
+
+        val voidResponse = response.body();
+    }
 }
