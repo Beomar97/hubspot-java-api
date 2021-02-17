@@ -10,8 +10,6 @@ import ch.marcoforster.libraries.hubspot.models.search.FilterGroup;
 import retrofit2.Call;
 import retrofit2.http.*;
 
-import java.util.List;
-
 public interface CrmApi {
 
     /**
@@ -32,7 +30,7 @@ public interface CrmApi {
      *     Control what is returned via the properties query param.
      * </p>
      *
-     * @param limit         The maximum number of results to display per page ({@default 10}).
+     * @param limit         The maximum number of results to display per page (default 10).
      * @param after         The paging cursor token of the last successfully read resource will be returned as the
      *                      paging.next.after JSON property of a paged response containing more results.
      * @param properties    A comma separated list of the properties to be returned in the response.
@@ -40,7 +38,7 @@ public interface CrmApi {
      *                      they will be ignored.
      * @param associations  A comma separated list of object types to retrieve associated IDs for. If any of
      *                      the specified associations do not exist, they will be ignored.
-     * @param archived      Whether to return only results that have been archived ({@default false}).
+     * @param archived      Whether to return only results that have been archived (default false).
      * @return              A list of companies by paging {@link CompaniesByPaging}.
      * @see                 <a href="https://developers.hubspot.com/docs/api/crm/companies">Companies</a>
      * @since               0.0.1
@@ -76,7 +74,7 @@ public interface CrmApi {
      * </p>
      *
      * @param companyId The ID of the company to read.
-     * @return          The company {@link Company} specified by {@param companyId}.
+     * @return          The company {@link Company} specified by {companyId}.
      * @see             <a href="https://developers.hubspot.com/docs/api/crm/companies">Companies</a>
      * @since           0.0.1
      */
@@ -99,9 +97,9 @@ public interface CrmApi {
      *                      they will be ignored.
      * @param associations  A comma separated list of object types to retrieve associated IDs for.
      *                      If any of the specified associations do not exist, they will be ignored.
-     * @param archived      Whether to return only results that have been archived ({@default false}).
+     * @param archived      Whether to return only results that have been archived (default false).
      * @param idProperty    The name of a property whose values are unique for this object type.
-     * @return              The company {@link Company} specified by {@param companyId}.
+     * @return              The company {@link Company} specified by {companyId}.
      * @see                 <a href="https://developers.hubspot.com/docs/api/crm/companies">Companies</a>
      * @since               0.0.1
      */
@@ -125,7 +123,7 @@ public interface CrmApi {
      * @param companyId         The ID of the company to update.
      * @param companyToUpdate   A custom request object {@link CompanyRequest},
      *                          specifying the properties to update for the company.
-     * @return                  The just updated company {@link Company} specified by {@param companyId}.
+     * @return                  The just updated company {@link Company} specified by {companyId}.
      */
     @PATCH("crm/v3/objects/companies/{companyId}")
     Call<Company> updateCompany(
@@ -152,9 +150,9 @@ public interface CrmApi {
      * </p>
      *
      * @param companiesToSearch A custom request object {@link SearchCompaniesRequest},
-     *                          defines filter groups {@link List<FilterGroup>} with filters {@link List<Filter>},
-     *                          properties to sort by {@param sorts}, an optional query {@param query},
-     *                          and has paging capabilities with {@param limit} and {@param after}.
+     *                          defines filter groups {@link FilterGroup} with filters {@link Filter},
+     *                          properties to sort by {sorts}, an optional query {query},
+     *                          and has paging capabilities with {limit} and {after}.
      * @return                  A list of companies found by the search {@link CompaniesBySearch}.
      */
     @POST("crm/v3/objects/companies/search")
