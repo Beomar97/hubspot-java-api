@@ -12,12 +12,14 @@ POST {{baseUrl}}/crm/v3/objects/companies?hapikey={{apiKey}}
 Content-Type: application/json
 
 {
-  "city": "Cambridge",
-  "domain": "biglytics.net",
-  "industry": "Technology",
-  "name": "Biglytics",
-  "phone": "(877) 929-0687",
-  "state": "Massachusetts"
+  "properties": {
+    "city": "Cambridge",
+    "domain": "biglytics.net",
+    "industry": "Technology",
+    "name": "Biglytics",
+    "phone": "(877) 929-0687",
+    "state": "Massachusetts"
+  }
 }
 
 ### Read
@@ -29,12 +31,14 @@ PATCH {{baseUrl}}/crm/v3/objects/companies/{companyId}?hapikey={{apiKey}}
 Content-Type: application/json
 
 {
-  "city": "Cambridge",
-  "domain": "biglytics.net",
-  "industry": "Technology",
-  "name": "Biglytics",
-  "phone": "(877) 929-0687",
-  "state": "Massachusetts"
+  "properties": {
+    "city": "Cambridge",
+    "domain": "biglytics.net",
+    "industry": "Technology",
+    "name": "Biglytics",
+    "phone": "(877) 929-0687",
+    "state": "Massachusetts"
+  }
 }
 
 ### Archive
