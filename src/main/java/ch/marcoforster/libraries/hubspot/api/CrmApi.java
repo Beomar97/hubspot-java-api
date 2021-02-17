@@ -2,10 +2,9 @@ package ch.marcoforster.libraries.hubspot.api;
 
 import ch.marcoforster.libraries.hubspot.models.crm.companies.CompaniesByPaging;
 import ch.marcoforster.libraries.hubspot.models.crm.companies.Company;
+import ch.marcoforster.libraries.hubspot.models.crm.companies.requests.CompanyRequest;
 import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
+import retrofit2.http.*;
 
 public interface CrmApi {
 
@@ -21,6 +20,11 @@ public interface CrmApi {
             @Query("archived") Boolean archived
     );
 
+    @POST("crm/v3/objects/companies")
+    Call<Company> createCompany(
+            @Body CompanyRequest companyToCreate
+    );
+
     @GET("crm/v3/objects/companies/{companyId}")
     Call<Company> readCompany(
             @Path("companyId") String companyId
@@ -33,5 +37,11 @@ public interface CrmApi {
             @Query("associations") String[] associations,
             @Query("archived") Boolean archived,
             @Query("idProperty") String idProperty
+    );
+
+    @PATCH("crm/v3/objects/companies/{companyId}")
+    Call<Company> updateCompany(
+        @Path("companyId") String companyId,
+        @Body CompanyRequest companyToUpdate
     );
 }

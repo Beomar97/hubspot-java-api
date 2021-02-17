@@ -1,11 +1,13 @@
 package ch.marcoforster.libraries.hubspot.api;
 
 import ch.marcoforster.libraries.hubspot.HubSpot;
+import ch.marcoforster.libraries.hubspot.models.crm.companies.requests.CompanyRequest;
 import lombok.val;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import static config.EnvironmentVariables.API_KEY;
 import static config.EnvironmentVariables.COMPANY_ID;
@@ -61,5 +63,39 @@ class CrmApiTest {
         val response = request.execute();
 
         val company = response.body();
+    }
+
+    @Test
+    void createCompany() throws IOException {
+        val request = crmApi.createCompany(
+                new CompanyRequest(
+                        new HashMap<>() {{
+                            put("city", "Cambridge");
+                            put("domain", "biglytics.net");
+                            put("industry", "Technology");
+                            put("name", "Biglytics");
+                            put("phone", "(877) 929-0687");
+                            put("state", "Massachusetts");
+                        }}
+                )
+        );
+        val response = request.execute();
+
+        val createdCompany = response.body();
+    }
+
+    @Test
+    void updateCompany() throws IOException {
+        val request = crmApi.updateCompany(
+                COMPANY_ID,
+                new CompanyRequest(
+                        new HashMap<>() {{
+                            put("city", "London");
+                        }}
+                )
+        );
+        val response = request.execute();
+
+        val updatedCompany = response.body();
     }
 }
