@@ -2,6 +2,7 @@ package ch.marcoforster.libraries.hubspot;
 
 import ch.marcoforster.libraries.hubspot.api.CrmApi;
 import ch.marcoforster.libraries.hubspot.interceptors.AuthenticationInterceptor;
+import ch.marcoforster.libraries.hubspot.interceptors.RequestHeaderInterceptor;
 import lombok.val;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -31,6 +32,7 @@ public class HubSpot {
     private OkHttpClient buildOkHttpClient(String apiKey) {
         return new OkHttpClient().newBuilder()
                 .addInterceptor(new AuthenticationInterceptor(apiKey))
+                .addInterceptor(new RequestHeaderInterceptor("Content-Type", "application/json"))
                 .build();
     }
 
