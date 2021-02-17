@@ -124,6 +124,8 @@ public interface CrmApi {
      * @param companyToUpdate   A custom request object {@link CompanyRequest},
      *                          specifying the properties to update for the company.
      * @return                  The just updated company {@link Company} specified by {companyId}.
+     * @see                     <a href="https://developers.hubspot.com/docs/api/crm/companies">Companies</a>
+     * @since                   0.0.1
      */
     @PATCH("crm/v3/objects/companies/{companyId}")
     Call<Company> updateCompany(
@@ -138,6 +140,8 @@ public interface CrmApi {
      *
      * @param companyId The ID of the company to archive.
      * @return          A void response will be returned (HTTP 204: No content).
+     * @see             <a href="https://developers.hubspot.com/docs/api/crm/companies">Companies</a>
+     * @since           0.0.1
      */
     @DELETE("crm/v3/objects/companies/{companyId}")
     Call<Void> archiveCompany(
@@ -154,6 +158,8 @@ public interface CrmApi {
      *                          properties to sort by {sorts}, an optional query {query},
      *                          and has paging capabilities with {limit} and {after}.
      * @return                  A list of companies found by the search {@link CompaniesBySearch}.
+     * @see                     <a href="https://developers.hubspot.com/docs/api/crm/companies">Companies</a>
+     * @since                   0.0.1
      */
     @POST("crm/v3/objects/companies/search")
     Call<CompaniesBySearch> searchCompanies(
