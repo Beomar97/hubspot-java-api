@@ -1,10 +1,16 @@
 package ch.marcoforster.libraries.hubspot.api;
 
 import ch.marcoforster.libraries.hubspot.models.crm.companies.CompaniesByPaging;
+import ch.marcoforster.libraries.hubspot.models.crm.companies.CompaniesBySearch;
 import ch.marcoforster.libraries.hubspot.models.crm.companies.Company;
 import ch.marcoforster.libraries.hubspot.models.crm.companies.requests.CompanyRequest;
+import ch.marcoforster.libraries.hubspot.models.crm.companies.requests.SearchCompaniesRequest;
+import ch.marcoforster.libraries.hubspot.models.search.Filter;
+import ch.marcoforster.libraries.hubspot.models.search.FilterGroup;
 import retrofit2.Call;
 import retrofit2.http.*;
+
+import java.util.List;
 
 public interface CrmApi {
 
@@ -27,9 +33,13 @@ public interface CrmApi {
      * </p>
      *
      * @param limit         The maximum number of results to display per page ({@default 10}).
-     * @param after         The paging cursor token of the last successfully read resource will be returned as the paging.next.after JSON property of a paged response containing more results.
-     * @param properties    A comma separated list of the properties to be returned in the response. If any of the specified properties are not present on the requested object(s), they will be ignored.
-     * @param associations  A comma separated list of object types to retrieve associated IDs for. If any of the specified associations do not exist, they will be ignored.
+     * @param after         The paging cursor token of the last successfully read resource will be returned as the
+     *                      paging.next.after JSON property of a paged response containing more results.
+     * @param properties    A comma separated list of the properties to be returned in the response.
+     *                      If any of the specified properties are not present on the requested object(s),
+     *                      they will be ignored.
+     * @param associations  A comma separated list of object types to retrieve associated IDs for. If any of
+     *                      the specified associations do not exist, they will be ignored.
      * @param archived      Whether to return only results that have been archived ({@default false}).
      * @return              A list of companies by paging {@link CompaniesByPaging}.
      * @see                 <a href="https://developers.hubspot.com/docs/api/crm/companies">Companies</a>
@@ -49,7 +59,8 @@ public interface CrmApi {
      *     Create a company with the given properties and return a copy of the object, including the ID.
      * </p>
      *
-     * @param companyToCreate   A custom request object {@link CompanyRequest}, specifying the properties of the to created company.
+     * @param companyToCreate   A custom request object {@link CompanyRequest},
+     *                          specifying the properties of the to created company.
      * @return                  The just created company {@link Company}.
      * @see                     <a href="https://developers.hubspot.com/docs/api/crm/companies">Companies</a>
      * @since                   0.0.1
@@ -77,13 +88,17 @@ public interface CrmApi {
     /**
      * <p>
      *     Read an Object identified by {companyId} with optional parameters.
-     *     {companyId} refers to the internal object ID by default, or optionally any unique property value as specified by the idProperty query param.
+     *     {companyId} refers to the internal object ID by default,
+     *     or optionally any unique property value as specified by the idProperty query param.
      *     Control what is returned via the properties query param.
      * </p>
      *
      * @param companyId     The ID of the company to read.
-     * @param properties    A comma separated list of the properties to be returned in the response. If any of the specified properties are not present on the requested object(s), they will be ignored.
-     * @param associations  A comma separated list of object types to retrieve associated IDs for. If any of the specified associations do not exist, they will be ignored.
+     * @param properties    A comma separated list of the properties to be returned in the response.
+     *                      If any of the specified properties are not present on the requested object(s),
+     *                      they will be ignored.
+     * @param associations  A comma separated list of object types to retrieve associated IDs for.
+     *                      If any of the specified associations do not exist, they will be ignored.
      * @param archived      Whether to return only results that have been archived ({@default false}).
      * @param idProperty    The name of a property whose values are unique for this object type.
      * @return              The company {@link Company} specified by {@param companyId}.
@@ -108,7 +123,8 @@ public interface CrmApi {
      * </p>
      *
      * @param companyId         The ID of the company to update.
-     * @param companyToUpdate   A custom request object {@link CompanyRequest}, specifying the properties to update for the company.
+     * @param companyToUpdate   A custom request object {@link CompanyRequest},
+     *                          specifying the properties to update for the company.
      * @return                  The just updated company {@link Company} specified by {@param companyId}.
      */
     @PATCH("crm/v3/objects/companies/{companyId}")
